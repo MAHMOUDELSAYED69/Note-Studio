@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
               },
               title: 'Note Nest',
               debugShowCheckedModeBanner: false,
+              // home: SplashScreen(),
             ));
   }
 }
