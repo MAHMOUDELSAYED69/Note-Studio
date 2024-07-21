@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:note_studio/router/app_router.dart';
+import 'package:note_studio/utils/constants/routes.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -22,7 +24,8 @@ class MyApp extends StatelessWidget {
               },
               title: 'Note Nest',
               debugShowCheckedModeBanner: false,
-              // home: SplashScreen(),
+              initialRoute: RouteManager.initialRoute,
+              onGenerateRoute: AppRouter.onGenerateRoute,
             ));
   }
 }
