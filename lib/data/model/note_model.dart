@@ -1,5 +1,5 @@
 class Note {
-  final String id;
+  final int id; // Change to int since SQLite autoincrement uses int
   final String title;
   final String content;
   final DateTime creationDate;

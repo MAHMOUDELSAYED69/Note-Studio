@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Faker().lorem.sentence(),
         creationDate: DateTime.now(),
         content: Faker().lorem.sentences(10).toString(),
-        id: '1',
+        id: 1,
         lastModifiedDate: DateTime.now()),
   );
 
