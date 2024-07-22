@@ -18,13 +18,13 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     goToNextScreen();
-    Future.delayed(const Duration(milliseconds: 2200),
+    Future.delayed(const Duration(milliseconds: 2600),
         () => setState(() => _isFinish = true));
   }
 
   Future<void> goToNextScreen() async {
     await Future.delayed(
-      const Duration(seconds: 4),
+      const Duration(milliseconds: 4200),
       () => Navigator.pushReplacementNamed(context, RouteManager.home),
     );
   }

@@ -33,9 +33,15 @@ abstract class AppTheme {
         ),
         side: BorderSide(color: ColorManager.grey, width: 1.dm),
       ),
-      //
-
-      iconTheme: const IconThemeData(color: ColorManager.dark),
+      //-----------------------------------------------------------//* Floating Action Button
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+          foregroundColor: ColorManager.white,
+          backgroundColor: ColorManager.dark,
+          shape: const CircleBorder(),
+          elevation: 3,
+          splashColor: ColorManager.white.withOpacity(0.15)),
+      //-----------------------------------------------------------//* Icon
+      iconTheme: const IconThemeData(color: ColorManager.white, size: 25),
       switchTheme: const SwitchThemeData(
         trackOutlineColor: WidgetStatePropertyAll(ColorManager.green),
         thumbColor: WidgetStatePropertyAll(ColorManager.white),
@@ -53,7 +59,7 @@ abstract class AppTheme {
       appBarTheme: AppBarTheme(
         titleTextStyle: TextStyle(
             color: ColorManager.white,
-            fontSize: 40.sp,
+            fontSize: 37.sp,
             fontFamily: FontFamilyManager.nunito),
         backgroundColor: ColorManager.transparent,
         scrolledUnderElevation: 0,
@@ -101,6 +107,12 @@ abstract class AppTheme {
         ),
       ),
       //--------------------------------------------------//* INPUT DECORATION
+
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: ColorManager.white,
+        selectionColor: ColorManager.grey.withOpacity(0.7),
+        selectionHandleColor: ColorManager.grey
+      ),
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: TextStyle(fontSize: 14.spMin),
         filled: true,

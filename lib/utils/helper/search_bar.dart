@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:note_studio/utils/extentions/extentions.dart';
 
@@ -24,12 +23,12 @@ class NotesSearchDelegate extends SearchDelegate<String> {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      icon: Icon(
+    return GestureDetector(
+      child: Icon(
         Icons.arrow_back,
         color: context.iconTheme.color,
       ),
-      onPressed: () {
+      onTap: () {
         close(context, '');
       },
     );
