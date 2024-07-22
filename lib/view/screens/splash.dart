@@ -1,5 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-
+import 'package:note_studio/utils/constants/images.dart';
+import 'package:note_studio/utils/extentions/extentions.dart';
 import '../../utils/constants/routes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,17 +12,54 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool _isFinish = false;
+
   @override
   void initState() {
     super.initState();
     goToNextScreen();
+    Future.delayed(const Duration(milliseconds: 2200),
+        () => setState(() => _isFinish = true));
   }
 
-  Future<void> goToNextScreen() async => Future.delayed(
-      const Duration(seconds: 2),
-      () => Navigator.pushReplacementNamed(context, RouteManager.home));
+  Future<void> goToNextScreen() async {
+    await Future.delayed(
+      const Duration(seconds: 4),
+      () => Navigator.pushReplacementNamed(context, RouteManager.home),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset(
+              ImageManager.splashImage,
+              width: context.width / 2,
+              height: context.width / 2,
+            ),
+            _isFinish
+                ? Text('Note Studio', style: context.textTheme.bodyLarge)
+                : DefaultTextStyle(
+                    style: context.textTheme.bodyLarge!,
+                    child: AnimatedTextKit(
+                      isRepeatingAnimation: false,
+                      animatedTexts: [
+                        FlickerAnimatedText(
+                          entryEnd: 1,
+                          'Note Studio',
+                          speed: const Duration(milliseconds: 2200),
+                        ),
+                      ],
+                    ),
+                  ),
+          ],
+        ),
+      ),
+    );
   }
 }
