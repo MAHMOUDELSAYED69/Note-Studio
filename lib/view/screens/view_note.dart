@@ -85,6 +85,7 @@ class _ViewNoteScreenState extends State<ViewNoteScreen> {
                   focusedBorder: inputBorder,
                 ),
               ),
+              SizedBox(height: 33.h),
             ],
           ),
         ),
