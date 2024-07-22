@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     (index) => Note(
         title: Faker().lorem.sentence(),
         creationDate: DateTime.now(),
-        content: Faker().lorem.sentences(3).toString(),
+        content: Faker().lorem.sentences(10).toString(),
         id: '1',
         lastModifiedDate: DateTime.now()),
   );
@@ -67,11 +67,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
-
-class UserNotesModel {
-  final String userNote;
-  final String time;
-
-  UserNotesModel({required this.userNote, required this.time});
 }

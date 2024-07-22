@@ -112,6 +112,8 @@ abstract class AppTheme {
 
       //--------------------------------------------------//* INPUT DECORATION
       inputDecorationTheme: const InputDecorationTheme(
+        border: InputBorder.none,
+        contentPadding: EdgeInsets.zero,
         focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
         enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
         errorBorder: OutlineInputBorder(borderSide: BorderSide.none),
