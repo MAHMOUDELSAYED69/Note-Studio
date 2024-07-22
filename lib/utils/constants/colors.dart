@@ -17,4 +17,13 @@ abstract class ColorManager {
   static const Color lightYellow = Color(0xffFFF599);
   static const Color lightBlue = Color(0xff9EFFFF);
   static const Color lightpurple = Color(0xffB69CFF);
+//? Notes Colors List
+  static const List<Color> colorList = [
+    ColorManager.magenta,
+    ColorManager.lightPink,
+    ColorManager.lightGreen,
+    ColorManager.lightYellow,
+    ColorManager.lightBlue,
+    ColorManager.lightpurple,
+  ];
 }
