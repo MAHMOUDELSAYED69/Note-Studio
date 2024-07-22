@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_studio/utils/constants/colors.dart';
 import 'package:note_studio/utils/extentions/extentions.dart';
+import 'package:note_studio/view/widgets/my_elevated_button.dart';
 
+import '../../utils/helper/my_dialog.dart';
 import '../widgets/my_app_bar_action_button.dart';
 
 class AddNoteScreen extends StatelessWidget {
@@ -30,7 +32,13 @@ class AddNoteScreen extends StatelessWidget {
           const SizedBox(width: 20),
           AppBarActionButton(
             iconData: Icons.save_outlined,
-            onTap: () {},
+            onTap: () => openMyDialog(
+              context,
+              submitButtonText: 'Save',
+              title: 'Save changes ?',
+              submitButtonMethod: () =>
+                  Navigator.popUntil(context, (route) => route.isFirst),
+            ),
           ),
           const SizedBox(width: 24),
         ],
