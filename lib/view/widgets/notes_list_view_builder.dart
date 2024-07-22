@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../model/note_model.dart';
 import '../../utils/extentions/extentions.dart';
 
 import '../../utils/constants/colors.dart';
-import '../screens/home.dart';
 
 class BuildNotesListViewbuilder extends StatelessWidget {
   const BuildNotesListViewbuilder({
     super.key,
-    required List<UserNotesModel> userNoteList,
+    required List<Note> userNoteList,
   }) : _userNoteList = userNoteList;
 
-  final List<UserNotesModel> _userNoteList;
+  final List<Note> _userNoteList;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class BuildNotesListViewbuilder extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    note.userNote,
+                    note.title,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
                     style: context.textTheme.bodyMedium

@@ -1,6 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/note_model.dart';
 import '../../utils/helper/search_bar.dart';
 import '../widgets/empty_notes_body.dart';
 import '../widgets/my_app_bar_action_button.dart';
@@ -21,10 +22,14 @@ class _HomeScreenState extends State<HomeScreen> {
     'Note 3',
     'Note 4',
   ];
-  final List<UserNotesModel> _userNoteList = List<UserNotesModel>.generate(
+  final List<Note> _userNoteList = List<Note>.generate(
     12,
-    (index) => UserNotesModel(
-        userNote: Faker().lorem.sentence(), time: Faker().date.justTime()),
+    (index) => Note(
+        title: Faker().lorem.sentence(),
+        creationDate: DateTime.now(),
+        content: Faker().lorem.sentences(3).toString(),
+        id: '1',
+        lastModifiedDate: DateTime.now()),
   );
 
   @override
