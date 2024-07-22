@@ -1,11 +1,11 @@
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:note_studio/utils/constants/images.dart';
-import 'package:note_studio/utils/extentions/extentions.dart';
 
 import '../../utils/helper/search_bar.dart';
+import '../widgets/empty_notes_body.dart';
 import '../widgets/my_app_bar_action_button.dart';
 import '../widgets/my_floating_action_button.dart';
+import '../widgets/notes_list_view_builder.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,6 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
     'Note 3',
     'Note 4',
   ];
+  final List<UserNotesModel> _userNoteList = List<UserNotesModel>.generate(
+    12,
+    (index) => UserNotesModel(
+        userNote: Faker().lorem.sentence(), time: Faker().date.justTime()),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,21 +56,17 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: const BuildFloatingActionButton(),
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              ImageManager.firstNote,
-              width: context.width / 1.2,
-            ),
-            SizedBox(height: 5.h),
-            Text(
-              'Create your first note !',
-              style: context.textTheme.bodyMedium,
-            )
-          ],
-        ),
+        child: _userNoteList.isNotEmpty
+            ? BuildNotesListViewbuilder(userNoteList: _userNoteList)
+            : const BuildEmptyNotesbody(),
       ),
     );
   }
+}
+
+class UserNotesModel {
+  final String userNote;
+  final String time;
+
+  UserNotesModel({required this.userNote, required this.time});
 }
