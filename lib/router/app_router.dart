@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import '../view/screens/add_note_screen.dart';
+import '../model/note_model.dart';
+import '../view/screens/add_note.dart';
 import '../view/screens/splash.dart';
 import '../utils/constants/routes.dart';
 import '../view/screens/home.dart';
+import '../view/screens/view_note.dart';
 
 abstract class AppRouter {
   const AppRouter._();
@@ -15,6 +17,10 @@ abstract class AppRouter {
 
       case RouteManager.addNoteScreen:
         return MaterialPageRoute(builder: (context) => const AddNoteScreen());
+      case RouteManager.viewNoteScreen:
+        final Note noteData = settings.arguments as Note;
+        return MaterialPageRoute(
+            builder: (context) => ViewNoteScreen(noteData: noteData));
       default:
         return null;
     }
