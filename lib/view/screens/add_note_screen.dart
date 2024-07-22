@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:note_studio/utils/constants/colors.dart';
-import 'package:note_studio/utils/extentions/extentions.dart';
+import '../../utils/constants/colors.dart';
+import '../../utils/extentions/extentions.dart';
 
 import '../../utils/helper/my_dialog.dart';
 import '../widgets/my_app_bar_action_button.dart';

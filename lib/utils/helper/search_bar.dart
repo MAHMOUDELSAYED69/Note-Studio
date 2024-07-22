@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_studio/utils/extentions/extentions.dart';
+import '../../utils/extentions/extentions.dart';
 
 class NotesSearchDelegate extends SearchDelegate<String> {
   final List<String> notes;
