@@ -38,7 +38,6 @@ abstract class AppTheme {
           foregroundColor: ColorManager.white,
           backgroundColor: ColorManager.dark,
           shape: CircleBorder(),
-          elevation: 3,
           splashColor: ColorManager.transparent),
       //-----------------------------------------------------------//* Icon
       iconTheme: const IconThemeData(color: ColorManager.white, size: 25),

@@ -1,7 +1,7 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
-import '../../model/note_model.dart';
+import '../../data/model/note_model.dart';
 import '../../utils/helper/search_bar.dart';
 import '../widgets/empty_notes_body.dart';
 import '../widgets/my_app_bar_action_button.dart';

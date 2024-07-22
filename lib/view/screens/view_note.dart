@@ -4,7 +4,7 @@ import 'package:notes_studio/utils/extentions/extentions.dart';
 import '../../utils/constants/colors.dart';
 import '../../view/widgets/my_app_bar_action_button.dart';
 
-import '../../model/note_model.dart';
+import '../../data/model/note_model.dart';
 
 class ViewNoteScreen extends StatefulWidget {
   const ViewNoteScreen({super.key, required this.noteData});

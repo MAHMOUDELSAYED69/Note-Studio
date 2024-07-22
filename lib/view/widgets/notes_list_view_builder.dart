@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:notes_studio/utils/constants/routes.dart';
-import '../../model/note_model.dart';
+import '../../utils/constants/routes.dart';
+import '../../data/model/note_model.dart';
 import '../../utils/extentions/extentions.dart';
 
 import '../../utils/constants/colors.dart';
@@ -26,11 +26,8 @@ class BuildNotesListViewbuilder extends StatelessWidget {
           final note = _userNoteList[index];
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                RouteManager.viewNoteScreen,
-                arguments: note
-              );
+              Navigator.pushNamed(context, RouteManager.viewNoteScreen,
+                  arguments: note);
             },
             child: Container(
               alignment: Alignment.center,
