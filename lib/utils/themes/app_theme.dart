@@ -34,12 +34,12 @@ abstract class AppTheme {
         side: BorderSide(color: ColorManager.grey, width: 1.dm),
       ),
       //-----------------------------------------------------------//* Floating Action Button
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
           foregroundColor: ColorManager.white,
           backgroundColor: ColorManager.dark,
-          shape: const CircleBorder(),
+          shape: CircleBorder(),
           elevation: 3,
-          splashColor: ColorManager.white.withOpacity(0.15)),
+          splashColor: ColorManager.transparent),
       //-----------------------------------------------------------//* Icon
       iconTheme: const IconThemeData(color: ColorManager.white, size: 25),
       switchTheme: const SwitchThemeData(
@@ -77,9 +77,9 @@ abstract class AppTheme {
           fontWeight: FontWeight.w600,
         ),
         bodyMedium: TextStyle(
-          fontSize: 16.spMin,
-          color: ColorManager.grey,
-          fontWeight: FontWeight.w500,
+          fontSize: 17.5.sp,
+          color: ColorManager.white,
+          fontWeight: FontWeight.w300,
         ),
         bodySmall: TextStyle(
           fontSize: 14.spMin,
@@ -88,15 +88,13 @@ abstract class AppTheme {
         ),
 
         displayLarge: TextStyle(
-          fontSize: 24.spMin,
-          color: ColorManager.grey,
-          fontWeight: FontWeight.w600,
+          fontSize: 45.2.sp,
+          color: ColorManager.lightGrey,
         ),
         //--------------------------------------------------//* For button
         displayMedium: TextStyle(
-          fontSize: 16.spMin,
-          color: ColorManager.lightGreen,
-          fontWeight: FontWeight.w600,
+          fontSize: 21.sp,
+          color: ColorManager.lightGrey,
         ),
         displaySmall: TextStyle(
           decoration: TextDecoration.underline,
@@ -106,54 +104,18 @@ abstract class AppTheme {
           fontWeight: FontWeight.w500,
         ),
       ),
-      //--------------------------------------------------//* INPUT DECORATION
 
       textSelectionTheme: TextSelectionThemeData(
-        cursorColor: ColorManager.white,
-        selectionColor: ColorManager.grey.withOpacity(0.7),
-        selectionHandleColor: ColorManager.grey
-      ),
-      inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(fontSize: 14.spMin),
-        filled: true,
-        fillColor: ColorManager.white,
-        focusedBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
-          ),
-          borderSide: BorderSide(
-            width: 1.7.w,
-            color: ColorManager.green,
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
-          ),
-          borderSide: BorderSide(
-            width: 1.7.w,
-            color: ColorManager.green,
-          ),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
-          ),
-          borderSide: BorderSide(
-            width: 2.w,
-            color: ColorManager.red,
-          ),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8),
-          ),
-          borderSide: BorderSide(
-            width: 2.w,
-            color: ColorManager.red,
-          ),
-        ),
-        contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20),
+          cursorColor: ColorManager.lightGrey,
+          selectionColor: ColorManager.grey.withOpacity(0.7),
+          selectionHandleColor: ColorManager.grey),
+
+      //--------------------------------------------------//* INPUT DECORATION
+      inputDecorationTheme: const InputDecorationTheme(
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
+        enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
+        errorBorder: OutlineInputBorder(borderSide: BorderSide.none),
+        focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide.none),
       ),
     );
   }

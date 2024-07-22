@@ -17,6 +17,7 @@ class AppBarActionButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        alignment: Alignment.center,
         width: 50,
         height: 50,
         decoration: BoxDecoration(
@@ -27,7 +28,7 @@ class AppBarActionButton extends StatelessWidget {
           iconData,
           color: context.iconTheme.color,
         ),
-      ),
+      ),  
     );
   }
 }

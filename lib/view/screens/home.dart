@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_studio/utils/constants/images.dart';
 import 'package:note_studio/utils/extentions/extentions.dart';
 
@@ -48,9 +49,19 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: const BuildFloatingActionButton(),
       body: Center(
-        child: Image.asset(
-          ImageManager.firstNote,
-          width: context.width / 1.2,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              ImageManager.firstNote,
+              width: context.width / 1.2,
+            ),
+            SizedBox(height: 5.h),
+            Text(
+              'Create your first note !',
+              style: context.textTheme.bodyMedium,
+            )
+          ],
         ),
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import '../view/screens/add_note_screen.dart';
 import '../view/screens/splash.dart';
-
 import '../utils/constants/routes.dart';
 import '../view/screens/home.dart';
 
@@ -12,6 +12,9 @@ abstract class AppRouter {
         return MaterialPageRoute(builder: (context) => const SplashScreen());
       case RouteManager.home:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
+
+      case RouteManager.addNoteScreen:
+        return MaterialPageRoute(builder: (context) => const AddNoteScreen());
       default:
         return null;
     }

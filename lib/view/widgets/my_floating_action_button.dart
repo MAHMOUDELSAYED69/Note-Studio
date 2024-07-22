@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/constants/routes.dart';
+
 class BuildFloatingActionButton extends StatelessWidget {
-  const BuildFloatingActionButton({super.key, this.onPressed});
-  final void Function()? onPressed;
+  const BuildFloatingActionButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -11,7 +13,7 @@ class BuildFloatingActionButton extends StatelessWidget {
         width: 68,
         height: 68,
         child: FloatingActionButton(
-          onPressed: onPressed,
+          onPressed: ()=> Navigator.pushNamed(context ,RouteManager.addNoteScreen),
           child: const Icon(
             Icons.add,
             size: 35,
