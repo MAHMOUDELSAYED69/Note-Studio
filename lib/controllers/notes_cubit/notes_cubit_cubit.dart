@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../data/model/note_model.dart';
 import '../../data/repository/note_repo.dart';
 
 part 'notes_cubit_state.dart';
@@ -20,31 +21,50 @@ class NotesCubit extends Cubit<NotesState> {
     }
   }
 
-  Future<void> addNote(Map<String, dynamic> note) async {
+  Future<void> addNote({
+    required String title,
+    required String content,
+  }) async {
     try {
       emit(NotesLoading());
-      await _notesRepository.insertNote(note);
-      fetchNotes();
+      await _notesRepository.insertNote(
+        title: title,
+        content: content,
+      );
+      await fetchNotes();
+      emit(NoteAdded());
     } catch (e) {
       emit(NotesError(e.toString()));
     }
   }
 
-  Future<void> updateNote(int id, Map<String, dynamic> note) async {
+  Future<void> updateNote({
+    required int id,
+    required String title,
+    required String content,
+  }) async {
     try {
       emit(NotesLoading());
-      await _notesRepository.updateNote(id, note);
-      fetchNotes();
+      await _notesRepository.updateNote(
+        id: id,
+        title: title,
+        content: content,
+      );
+      await fetchNotes();
     } catch (e) {
       emit(NotesError(e.toString()));
     }
   }
 
-  Future<void> deleteNote(int id) async {
+  Future<void> deleteNote({
+    required int id,
+  }) async {
     try {
       emit(NotesLoading());
-      await _notesRepository.deleteNote(id);
-      fetchNotes();
+      await _notesRepository.deleteNote(
+        id: id,
+      );
+      await fetchNotes();
     } catch (e) {
       emit(NotesError(e.toString()));
     }

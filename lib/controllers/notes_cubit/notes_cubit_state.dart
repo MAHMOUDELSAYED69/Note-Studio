@@ -7,8 +7,10 @@ class NotesInitial extends NotesState {}
 
 class NotesLoading extends NotesState {}
 
+class NoteAdded extends NotesState {}
+
 class NotesLoaded extends NotesState {
-  final List<Map<String, dynamic>> notes;
+  final List<Note> notes;
 
   NotesLoaded(this.notes);
 }
