@@ -45,17 +45,16 @@ abstract class AppTheme {
           color: ColorManager.white,
         )),
       ),
-      fontFamily: FontFamilyManager.ubuntu,
+      fontFamily: FontFamilyManager.nunito,
       useMaterial3: true,
       brightness: Brightness.dark,
       scaffoldBackgroundColor: ColorManager.dark,
       //-----------------------------------------------------------//* APP BAR
       appBarTheme: AppBarTheme(
         titleTextStyle: TextStyle(
-          color: ColorManager.dark,
-          fontSize: 20.spMin,
-          fontWeight: FontWeight.w500,
-        ),
+            color: ColorManager.white,
+            fontSize: 40.sp,
+            fontFamily: FontFamilyManager.nunito),
         backgroundColor: ColorManager.transparent,
         scrolledUnderElevation: 0,
         titleSpacing: 0,
@@ -67,7 +66,7 @@ abstract class AppTheme {
       //-----------------------------------------------------------//* TEXT
       textTheme: TextTheme(
         bodyLarge: TextStyle(
-          fontSize: 70.sp,
+          fontSize: 30.sp,
           color: ColorManager.white,
           fontWeight: FontWeight.w600,
         ),
