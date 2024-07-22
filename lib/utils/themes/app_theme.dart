@@ -31,7 +31,7 @@ abstract class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(3.dm),
         ),
-        side: BorderSide(color: ColorManager.grey, width: 1.dm),
+        side: BorderSide(color: ColorManager.darkGrey, width: 1.dm),
       ),
       //-----------------------------------------------------------//* Floating Action Button
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -107,8 +107,8 @@ abstract class AppTheme {
 
       textSelectionTheme: TextSelectionThemeData(
           cursorColor: ColorManager.lightGrey,
-          selectionColor: ColorManager.grey.withOpacity(0.7),
-          selectionHandleColor: ColorManager.grey),
+          selectionColor: ColorManager.darkGrey.withOpacity(0.7),
+          selectionHandleColor: ColorManager.darkGrey),
 
       //--------------------------------------------------//* INPUT DECORATION
       inputDecorationTheme: const InputDecorationTheme(
