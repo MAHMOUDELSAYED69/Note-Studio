@@ -58,6 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, state) {
           if (state is NotesLoaded) {
             _notes = state.notes;
+            if (_notes.isEmpty) {
+              return const Center(child: BuildEmptyNotesbody());
+            }
             return BuildNotesListViewbuilder(userNoteList: state.notes);
           }
           return const Center(child: BuildEmptyNotesbody());

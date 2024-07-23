@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/constants/routes.dart';
 import '../../data/model/note_model.dart';
 import '../../utils/extentions/extentions.dart';
+import '../../view/widgets/empty_search_body.dart';
 
 class NotesSearchDelegate extends SearchDelegate<String> {
   final List<Note> notes;
@@ -65,19 +66,22 @@ class NotesSearchDelegate extends SearchDelegate<String> {
     final results = notes
         .where((note) => note.title.contains(query.toLowerCase()))
         .toList();
-    return ListView.builder(
-      itemCount: results.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(results[index].title,
-              style: context.textTheme.bodyMedium?.copyWith(fontSize: 26.sp)),
-          onTap: () {
-            log(results[index].title);
-            close(context, results[index].title);
-          },
-        );
-      },
-    );
+    return results.isEmpty
+        ? const Center(child: BuildEmptySearchbody())
+        : ListView.builder(
+            itemCount: results.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(results[index].title,
+                    style: context.textTheme.bodyMedium
+                        ?.copyWith(fontSize: 26.sp)),
+                onTap: () {
+                  log(results[index].title);
+                  close(context, results[index].title);
+                },
+              );
+            },
+          );
   }
 
   @override
@@ -85,22 +89,24 @@ class NotesSearchDelegate extends SearchDelegate<String> {
     final suggestions = notes
         .where((note) => note.title.contains(query.toLowerCase()))
         .toList();
-    return ListView.builder(
-      itemCount: suggestions.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(
-            suggestions[index].title,
-            style: context.textTheme.bodyMedium?.copyWith(fontSize: 26.sp),
-          ),
-          onTap: () {
-            query = suggestions[index].title;
-            showResults(context);
-            Navigator.pushNamed(context, RouteManager.viewNoteScreen,
-                arguments: suggestions[index]);
-          },
-        );
-      },
-    );
+    return suggestions.isEmpty
+        ? const Center(child: BuildEmptySearchbody())
+        : ListView.builder(
+            itemCount: suggestions.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(
+                  suggestions[index].title,
+                  style:
+                      context.textTheme.bodyMedium?.copyWith(fontSize: 26.sp),
+                ),
+                onTap: () {
+                  showResults(context);
+                  Navigator.pushNamed(context, RouteManager.viewNoteScreen,
+                      arguments: suggestions[index]);
+                },
+              );
+            },
+          );
   }
 }

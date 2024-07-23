@@ -15,10 +15,6 @@ class NotesCubit extends Cubit<NotesState> {
     try {
       emit(NotesLoading());
       final notes = await _notesRepository.getNotes();
-      if (notes.isEmpty) {
-        emit(NotesError());
-        return;
-      }
       emit(NotesLoaded(notes));
     } catch (err) {
       emit(NotesError(message: err.toString()));
