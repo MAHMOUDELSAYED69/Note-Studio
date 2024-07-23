@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../utils/extentions/extentions.dart';
 
-import '../../utils/constants/colors.dart';
-
 class AppBarActionButton extends StatelessWidget {
   const AppBarActionButton({
     super.key,
@@ -21,7 +19,7 @@ class AppBarActionButton extends StatelessWidget {
         width: 50,
         height: 50,
         decoration: BoxDecoration(
-          color: ColorManager.darkGrey,
+          color: context.theme.cardColor,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Icon(

@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     goToNextScreen();
-    Future.delayed(const Duration(milliseconds: 2600),
+    Future.delayed(const Duration(milliseconds: 2500 ),
         () => setState(() => _isFinish = true));
   }
 
@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         FlickerAnimatedText(
                           entryEnd: 1,
                           'Note Studio',
-                          speed: const Duration(milliseconds: 2200),
+                          speed: const Duration(milliseconds: 2500),
                         ),
                       ],
                     ),
