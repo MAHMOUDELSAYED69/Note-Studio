@@ -1,4 +1,4 @@
-name: notes_studio
+name: note_studio
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -40,12 +40,19 @@ dependencies:
   intl: ^0.19.0
   meta: ^1.12.0
   path: ^1.9.0
+  shared_preferences: ^2.2.3
   sqflite: ^2.3.3+1
+
 dev_dependencies:
-  flutter_lints: ^3.0.0
+  flutter_launcher_icons: "^0.13.1"
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/rafiki.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
