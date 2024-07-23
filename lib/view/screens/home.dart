@@ -1,36 +1,14 @@
-import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_studio/controllers/notes_cubit/notes_cubit_cubit.dart';
 
-import '../../data/model/note_model.dart';
-import '../../utils/helper/search_bar.dart';
 import '../widgets/empty_notes_body.dart';
 import '../widgets/my_app_bar_action_button.dart';
 import '../widgets/my_floating_action_button.dart';
 import '../widgets/notes_list_view_builder.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final List<String> notes = [
-    'Note 1',
-    'Note 2',
-    'Note 3',
-    'Note 4',
-  ];
-  final List<Note> _userNoteList = List<Note>.generate(
-    12,
-    (index) => Note(
-        title: Faker().lorem.sentence(),
-        creationDate: DateTime.now(),
-        content: Faker().lorem.sentences(10).toString(),
-        id: 1,
-        lastModifiedDate: DateTime.now()),
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
           AppBarActionButton(
             iconData: Icons.search,
             onTap: () {
-              showSearch(
-                context: context,
-                delegate: NotesSearchDelegate(notes: notes),
-              );
+              // showSearch(
+              //   context: context,
+              //   delegate: NotesSearchDelegate(notes: notes),
+              // );
             },
           ),
           const SizedBox(width: 20),
@@ -60,10 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       floatingActionButton: const BuildFloatingActionButton(),
-      body: Center(
-        child: _userNoteList.isNotEmpty
-            ? BuildNotesListViewbuilder(userNoteList: _userNoteList)
-            : const BuildEmptyNotesbody(),
+      body: BlocBuilder<NotesCubit, NotesState>(
+        builder: (context, state) {
+          if (state is NotesLoaded) {
+            return BuildNotesListViewbuilder(userNoteList: state.notes);
+          }
+          return const Center(child: BuildEmptyNotesbody());
+        },
       ),
     );
   }

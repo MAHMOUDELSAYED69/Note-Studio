@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/constants/routes.dart';
@@ -31,7 +32,8 @@ class BuildNotesListViewbuilder extends StatelessWidget {
             },
             child: Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 25),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 45, vertical: 25),
               margin: EdgeInsets.symmetric(vertical: 9.h),
               width: context.width,
               decoration: BoxDecoration(

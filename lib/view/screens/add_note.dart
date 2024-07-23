@@ -55,7 +55,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 Navigator.popUntil(context, (route) => route.isFirst);
               }
               if (state is NotesError) {
-                log(state.message);
+                log(state.message.toString());
               }
             },
             child: AppBarActionButton(

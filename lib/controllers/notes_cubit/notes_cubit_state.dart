@@ -16,7 +16,7 @@ class NotesLoaded extends NotesState {
 }
 
 class NotesError extends NotesState {
-  final String message;
+  final String? message;
 
-  NotesError(this.message);
+  NotesError({this.message});
 }

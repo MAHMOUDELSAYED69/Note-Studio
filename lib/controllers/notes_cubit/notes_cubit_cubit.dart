@@ -9,15 +9,21 @@ part 'notes_cubit_state.dart';
 class NotesCubit extends Cubit<NotesState> {
   final NotesRepository _notesRepository;
 
-  NotesCubit(this._notesRepository) : super(NotesInitial());
+  NotesCubit(this._notesRepository) : super(NotesInitial()) {
+    fetchNotes();
+  }
 
   Future<void> fetchNotes() async {
     try {
       emit(NotesLoading());
       final notes = await _notesRepository.getNotes();
+      if (notes.isEmpty) {
+        emit(NotesError());
+        return;
+      }
       emit(NotesLoaded(notes));
-    } catch (e) {
-      emit(NotesError(e.toString()));
+    } catch (err) {
+      emit(NotesError(message: err.toString()));
     }
   }
 
@@ -33,8 +39,8 @@ class NotesCubit extends Cubit<NotesState> {
       );
       await fetchNotes();
       emit(NoteAdded());
-    } catch (e) {
-      emit(NotesError(e.toString()));
+    } catch (err) {
+      emit(NotesError(message: err.toString()));
     }
   }
 
@@ -51,8 +57,8 @@ class NotesCubit extends Cubit<NotesState> {
         content: content,
       );
       await fetchNotes();
-    } catch (e) {
-      emit(NotesError(e.toString()));
+    } catch (err) {
+      emit(NotesError(message: err.toString()));
     }
   }
 
@@ -65,8 +71,8 @@ class NotesCubit extends Cubit<NotesState> {
         id: id,
       );
       await fetchNotes();
-    } catch (e) {
-      emit(NotesError(e.toString()));
+    } catch (err) {
+      emit(NotesError(message: err.toString()));
     }
   }
 }
