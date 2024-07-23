@@ -28,7 +28,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
   Future<bool> _confirmDialog() async {
     final title = _titleController.text.trim();
     final content = _contentController.text.trim();
-    if (title.isNotEmpty && content.isNotEmpty) {
+    if (title.isNotEmpty || content.isNotEmpty) {
       final result = await openMyDialog(
         context,
         submitButtonText: 'save',

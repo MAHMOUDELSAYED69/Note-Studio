@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import '../../controllers/notes_cubit/notes_cubit.dart';
 import '../../utils/extentions/extentions.dart';
 import '../../utils/helper/custom_sncakbar.dart';
@@ -21,6 +22,11 @@ class BuildNotesListViewbuilder extends StatefulWidget {
 }
 
 class BuildNotesListViewbuilderState extends State<BuildNotesListViewbuilder> {
+  String formatDateTime(DateTime dateTime) {
+    final DateFormat formatter = DateFormat('d MMM');
+    return formatter.format(dateTime);
+  }
+
   int? selectedNoteIndex;
 
   @override
@@ -76,26 +82,19 @@ class BuildNotesListViewbuilderState extends State<BuildNotesListViewbuilder> {
                   color: color,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      note.title,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                      style: context.textTheme.bodyMedium?.copyWith(
-                          fontSize: 22.sp,
-                          color: isSelected
-                              ? ColorManager.red
-                              : ColorManager.dark),
-                    ),
-                  ],
+                child: Text(
+                  note.title.isNotEmpty ? note.title : note.content,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
+                  style: context.textTheme.bodyMedium?.copyWith(
+                      fontSize: 22.sp,
+                      color: isSelected ? ColorManager.red : ColorManager.dark),
                 ),
               ),
               if (isSelected)
                 Center(
                   child: IconButton(
-                    icon: Icon(Icons.delete, size: 50.sp),
+                    icon: Icon(Icons.delete, size: 40.sp),
                     onPressed: () {
                       context.cubit<NotesCubit>().deleteNote(id: note.id);
                       setState(() {
@@ -106,6 +105,17 @@ class BuildNotesListViewbuilderState extends State<BuildNotesListViewbuilder> {
                     },
                   ),
                 ),
+              Positioned(
+                top: 20,
+                left: 15,
+                child: Text(
+                  formatDateTime(note.lastModifiedDate),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
+                  style: context.textTheme.bodySmall?.copyWith(
+                      color: isSelected ? ColorManager.red : ColorManager.dark),
+                ),
+              ),
             ]),
           );
         },
