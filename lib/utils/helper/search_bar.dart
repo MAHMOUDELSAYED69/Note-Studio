@@ -1,10 +1,36 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../utils/constants/routes.dart';
+import '../../data/model/note_model.dart';
 import '../../utils/extentions/extentions.dart';
 
 class NotesSearchDelegate extends SearchDelegate<String> {
-  final List<String> notes;
+  final List<Note> notes;
 
   NotesSearchDelegate({required this.notes});
+
+  late TextStyle themeTextStyle;
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    themeTextStyle = context.textTheme.bodyMedium!;
+    return theme.copyWith(
+      appBarTheme: AppBarTheme(
+        backgroundColor: context.appBarTheme.backgroundColor?.withOpacity(0.1),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: context.textTheme.bodyMedium,
+        border: InputBorder.none,
+      ),
+    );
+  }
+
+  @override
+  TextStyle? get searchFieldStyle {
+    return themeTextStyle;
+  }
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -37,15 +63,17 @@ class NotesSearchDelegate extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     final results = notes
-        .where((note) => note.toLowerCase().contains(query.toLowerCase()))
+        .where((note) => note.title.contains(query.toLowerCase()))
         .toList();
     return ListView.builder(
       itemCount: results.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text(results[index], style: context.textTheme.bodyLarge),
+          title: Text(results[index].title,
+              style: context.textTheme.bodyMedium?.copyWith(fontSize: 26.sp)),
           onTap: () {
-            close(context, results[index]);
+            log(results[index].title);
+            close(context, results[index].title);
           },
         );
       },
@@ -55,19 +83,21 @@ class NotesSearchDelegate extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     final suggestions = notes
-        .where((note) => note.toLowerCase().contains(query.toLowerCase()))
+        .where((note) => note.title.contains(query.toLowerCase()))
         .toList();
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder: (context, index) {
         return ListTile(
           title: Text(
-            suggestions[index],
-            style: context.textTheme.bodyLarge,
+            suggestions[index].title,
+            style: context.textTheme.bodyMedium?.copyWith(fontSize: 26.sp),
           ),
           onTap: () {
-            query = suggestions[index];
+            query = suggestions[index].title;
             showResults(context);
+            Navigator.pushNamed(context, RouteManager.viewNoteScreen,
+                arguments: suggestions[index]);
           },
         );
       },
