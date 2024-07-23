@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/extentions/extentions.dart';
@@ -5,13 +7,14 @@ import '../../utils/extentions/extentions.dart';
 import '../../view/widgets/my_elevated_button.dart';
 import '../constants/colors.dart';
 
-void openMyDialog(
+Future<bool>? openMyDialog(
   BuildContext context, {
-  required String submitButtonText,
-  required String title,
+  String? submitButtonText,
+  String? title,
   void Function()? submitButtonMethod,
-}) {
-  showGeneralDialog(
+  void Function()? cancelButtonMethod,
+}) async {
+  await showGeneralDialog(
       context: context,
       barrierColor: ColorManager.white.withOpacity(0.1),
       barrierDismissible: true,
@@ -33,16 +36,17 @@ void openMyDialog(
               height: 220.h,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: ColorManager.dark),
+                  color: context.theme.primaryColor),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Icon(
                     Icons.info,
-                    color: ColorManager.grey,
+                    color: context.theme.canvasColor,
                     size: 35.sp,
                   ),
-                  Text(title,
+                  Text(title ?? 'Save changes ?',
+                      textAlign: TextAlign.center,
                       style: context.textTheme.bodyMedium?.copyWith(
                         fontSize: 21.sp,
                         fontWeight: FontWeight.w400,
@@ -53,7 +57,7 @@ void openMyDialog(
                       Expanded(
                           flex: 4,
                           child: MyElevatedButton(
-                            title: submitButtonText,
+                            title: submitButtonText ?? 'save',
                             onPressed: submitButtonMethod,
                           )),
                       const Spacer(),
@@ -62,7 +66,9 @@ void openMyDialog(
                           child: MyElevatedButton(
                             title: 'Discard',
                             backgroundColor: ColorManager.red,
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: cancelButtonMethod ??
+                                () => Navigator.popUntil(
+                                    context, (route) => route.isFirst),
                           )),
                       const Spacer(),
                     ],
@@ -71,4 +77,5 @@ void openMyDialog(
               ),
             ),
           ));
+  return true;
 }
