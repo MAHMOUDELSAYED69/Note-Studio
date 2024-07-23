@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_studio/controllers/notes_cubit/notes_cubit_cubit.dart';
+import '../../controllers/notes_cubit/notes_cubit.dart';
+import '../../controllers/theme_cubit/theme_cubit.dart';
+import '../../utils/cache/cache.dart';
+import '../../utils/extentions/extentions.dart';
 
+import '../../data/model/note_model.dart';
+import '../../utils/helper/search_bar.dart';
 import '../widgets/empty_notes_body.dart';
 import '../widgets/my_app_bar_action_button.dart';
 import '../widgets/my_floating_action_button.dart';
 import '../widgets/notes_list_view_builder.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<Note> _notes = [];
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +34,21 @@ class HomeScreen extends StatelessWidget {
         actions: [
           AppBarActionButton(
             iconData: Icons.search,
-            onTap: () {
-              // showSearch(
-              //   context: context,
-              //   delegate: NotesSearchDelegate(notes: notes),
-              // );
-            },
+            onTap: () => showSearch(
+              context: context,
+              delegate: NotesSearchDelegate(notes: _notes),
+            ),
           ),
           const SizedBox(width: 20),
-          AppBarActionButton(
-            iconData: Icons.info_outline_rounded,
-            onTap: () {},
+          BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, state) {
+              return AppBarActionButton(
+                iconData: CacheData.get(key: 'isDarkMode') ?? false
+                    ? Icons.light_mode
+                    : Icons.dark_mode,
+                onTap: () => context.cubit<ThemeCubit>().toggleTheme(),
+              );
+            },
           ),
           const SizedBox(width: 24),
         ],
@@ -41,6 +57,7 @@ class HomeScreen extends StatelessWidget {
       body: BlocBuilder<NotesCubit, NotesState>(
         builder: (context, state) {
           if (state is NotesLoaded) {
+            _notes = state.notes;
             return BuildNotesListViewbuilder(userNoteList: state.notes);
           }
           return const Center(child: BuildEmptyNotesbody());
