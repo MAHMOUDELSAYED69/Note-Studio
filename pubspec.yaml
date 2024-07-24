@@ -30,7 +30,6 @@ environment:
 dependencies:
   animated_text_kit: ^4.2.2
   bloc: ^8.1.4
-  faker: ^2.1.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
