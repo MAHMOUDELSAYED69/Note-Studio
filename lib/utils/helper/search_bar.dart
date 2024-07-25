@@ -71,13 +71,14 @@ class NotesSearchDelegate extends SearchDelegate<String> {
         : ListView.builder(
             itemCount: results.length,
             itemBuilder: (context, index) {
+              final note = results[index];
               return ListTile(
-                title: Text(results[index].title,
+                title: Text(note.title.isNotEmpty ? note.title : note.content,
                     style: context.textTheme.bodyMedium
                         ?.copyWith(fontSize: 26.sp)),
                 onTap: () {
-                  log(results[index].title);
-                  close(context, results[index].title);
+                  log(note.title);
+                  close(context, note.title);
                 },
               );
             },
@@ -94,16 +95,17 @@ class NotesSearchDelegate extends SearchDelegate<String> {
         : ListView.builder(
             itemCount: suggestions.length,
             itemBuilder: (context, index) {
+              final note = suggestions[index];
               return ListTile(
                 title: Text(
-                  suggestions[index].title,
+                  note.title.isNotEmpty ? note.title : note.content,
                   style:
                       context.textTheme.bodyMedium?.copyWith(fontSize: 26.sp),
                 ),
                 onTap: () {
                   showResults(context);
                   Navigator.pushNamed(context, RouteManager.viewNoteScreen,
-                      arguments: suggestions[index]);
+                      arguments: note);
                 },
               );
             },

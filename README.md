@@ -1,6 +1,6 @@
 # Note Studio
 
-Note Studio is a comprehensive Flutter application that allows you to write, save, update, and delete notes effortlessly. It also includes a powerful search feature for filtering notes and supports both light and dark modes, ensuring a comfortable viewing experience. The app is designed with a user-friendly interface for seamless interaction.
+Note Studio is a comprehensive Flutter application that allows you to write, save, update, and delete notes effortlessly. Leveraging the power of sqflite for local database management and Cubit for state management, it ensures efficient performance and robust functionality. It also includes a powerful search feature for filtering notes and supports both light and dark modes, ensuring a comfortable viewing experience. The app is designed with a user-friendly interface for seamless interaction.
 
 ## Features
 
