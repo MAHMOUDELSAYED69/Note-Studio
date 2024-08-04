@@ -27,6 +27,7 @@ abstract class AppTheme {
 
       //-----------------------------------------------------------//* Floating Action Button
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          elevation: 8,
           foregroundColor: ColorManager.white,
           backgroundColor: ColorManager.dark,
           shape: CircleBorder(),
@@ -122,6 +123,7 @@ abstract class AppTheme {
 
       //-----------------------------------------------------------//* Floating Action Button
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          elevation: 8,
           foregroundColor: ColorManager.dark,
           backgroundColor: ColorManager.white,
           shape: CircleBorder(),

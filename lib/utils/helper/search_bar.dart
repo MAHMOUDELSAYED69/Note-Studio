@@ -67,7 +67,12 @@ class NotesSearchDelegate extends SearchDelegate<String> {
         .where((note) => note.title.contains(query.toLowerCase()))
         .toList();
     return results.isEmpty
-        ? const Center(child: BuildEmptySearchbody())
+        ? Center(
+            child: notes.isEmpty
+                ? const BuildEmptySearchbody(
+                    message: 'No Search History',
+                  )
+                : const BuildEmptySearchbody())
         : ListView.builder(
             itemCount: results.length,
             itemBuilder: (context, index) {
@@ -91,7 +96,12 @@ class NotesSearchDelegate extends SearchDelegate<String> {
         .where((note) => note.title.contains(query.toLowerCase()))
         .toList();
     return suggestions.isEmpty
-        ? const Center(child: BuildEmptySearchbody())
+        ? Center(
+            child: notes.isEmpty
+                ? const BuildEmptySearchbody(
+                    message: 'No Search History',
+                  )
+                : const BuildEmptySearchbody())
         : ListView.builder(
             itemCount: suggestions.length,
             itemBuilder: (context, index) {

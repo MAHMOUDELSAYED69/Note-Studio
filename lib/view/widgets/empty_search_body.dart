@@ -7,7 +7,9 @@ import '../../utils/constants/images.dart';
 class BuildEmptySearchbody extends StatelessWidget {
   const BuildEmptySearchbody({
     super.key,
+    this.message,
   });
+  final String? message;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class BuildEmptySearchbody extends StatelessWidget {
         ),
         SizedBox(height: 5.h),
         Text(
-          'File not found. Try searching again.',
+          message ?? 'File not found. Try searching again.',
           style: context.textTheme.bodyMedium,
         )
       ],
