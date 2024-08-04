@@ -11,6 +11,7 @@ import '../widgets/empty_notes_body.dart';
 import '../widgets/my_app_bar_action_button.dart';
 import '../widgets/my_floating_action_button.dart';
 import '../widgets/notes_list_view_builder.dart';
+import '../widgets/theme_mode_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -40,16 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(width: 20),
-          BlocBuilder<ThemeCubit, ThemeState>(
-            builder: (context, state) {
-              return AppBarActionButton(
-                iconData: CacheData.get(key: 'isDarkMode') ?? false
-                    ? Icons.light_mode
-                    : Icons.dark_mode,
-                onTap: () => context.cubit<ThemeCubit>().toggleTheme(),
-              );
-            },
-          ),
+          const ThemeToggleButton(),
           const SizedBox(width: 24),
         ],
       ),
