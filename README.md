@@ -92,7 +92,7 @@ Note Studio uses the following dependencies:
 ## Usage
 
 1. **Install the App**
-   - Download and install Note Studio from your app store.
+   - Download and install Note Studio.
 
 2. **Open the App**
    - Launch Note Studio on your device.
